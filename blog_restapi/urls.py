@@ -27,6 +27,7 @@ urlpatterns = [
     path('category_choise/<name>/', choise_category, name='choise_category'),
     path('delete_news/<news_pk>/', delete_news, name='delete_news'),
     path('edit_news/<news_pk>/', edit_news, name='edit_news'),
+    path('api/', include('api.urls', namespace='api'))
 ]
 
 
