@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+            <div class="card bg-light text-dark text-center">
+           <div class="card-body"> <h1> Страница  пользователя {{ user.get_username }}</h1></div>
+        </div>
+
+
+
+
+ {% for item in my_news %}
+
+              <div class="row">
+                   <div class="col-sm-12">
+                             <div class="card">
+                              <div class="row">
+
+                                  <div class="col-md-4">
+                                      {% if item.photo %}
+                                          <img src=" /static/img{{ item.photo.url }}" alt="" height="150">
+
+                                      {% else %}
+                                          <img src="https://picsum.photos/id/1060/150/250?blur=2" alt="" class="mr-3">
+                                      {% endif %}
+                                  </div>
+
+                                  <div class="col-md-8">
+                                            <h4 class="card-title"><span class="title"> {{ item.title }}</span>  </h4>
+                                            <h4 class="card-title"><span class="title"> {{ item.author }}</span>  </h4>
+                                            <h4 class="card-title"><span class="title"> {{ item.created_at|date:" d.m.Y H:i"  }}</span>  </h4>
+                                            <h4 class="card-title"><span class="title"> {{ item.updated_at|date:" d.m.Y H:i"  }}</span>  </h4>
+                                            <h4 class="card-title"><span class="title"> {{ item.category }}</span>  </h4>
+                                            <h4 class="card-title"><span class="title"> {{ item.content|safe|linebreaks|truncatewords:"30"  }}</span>  </h4>
+
+                                                            <a href="{{ item.get_absolute_url }}">
+                                            <button class="btn btn-primary">Read more ...</button></a>
+                                            <a href="{% url 'delete_news' item.pk %}"> <button class="btn btn-danger"> DELETE NEWS</button></a>
+                                            <a class="btn btn-primary" href="{% url 'edit_news' item.pk %}" role="button">Edit News</a>
+
+                                  </div>
+                              </div>
+                        </div>
+                    </div>
+      </div>
+
+                     {% endfor %}
+
+
+  <div class="pagination">
+        <span class="step-links">
+          {% if my_news.has_previous %}
+            <a href="?page=1" class="btn btn-primary">&laquo; first</a>
+            <a href="?page={{ my_news.previous_page_number }}" class="btn btn-primary">previous</a>
+          {% endif %}
+            <span class="current">
+                Page {{ my_news.number }} of {{ my_news.paginator.num_pages }}.
+            </span>
+          {% if my_news.has_next %}
+            <a href="?page={{ my_news.next_page_number }} " class="btn btn-primary">next</a>
+            <a href="?page={{ my_news.paginator.num_pages }}" class="btn btn-primary">last &raquo;</a>
+          {% endif %}
+          </span>
+      </div>
+
+
+{% endblock %}

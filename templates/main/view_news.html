@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+
+
+              <div class="row">
+                   <div class="col-sm-12">
+                             <div class="card">
+                              <div class="row">
+                                  <div class="col-md-4">
+                                      {% if item.photo %}
+                                          <img src=" /static/img{{ item.photo.url }}" alt="" height="150">
+
+                                      {% else %}
+                                          <img src="https://picsum.photos/id/1060/150/250?blur=2" alt="" class="mr-3">
+                                      {% endif %}
+                                    </div>
+
+                                  <div class="col-md-8">
+                                            <h4 class="card-title"><span class="title"> {{ item.title }}</span>  </h4>
+                                            <h4 class="card-title"><span class="title"> {{ item.content }}</span>  </h4>
+                                            <h4 class="card-title"><span class="title"> {{ item.author }}</span>  </h4>
+                                            <h4 class="card-title"><span class="title"> {{ item.created_at }}</span>  </h4>
+                                            <h4 class="card-title"><span class="title"> {{ item.updated_at }}</span>  </h4>
+                                            <h4 class="card-title"><span class="title"> {{ item.category }}</span>  </h4>
+
+                                                            <a href="{% url 'home' %}">
+                                            <button class="btn btn-primary"> Home </button></a>
+
+                                  </div>
+                              </div>
+                        </div>
+                    </div>
+      </div>
+
+
+
+{% endblock %}

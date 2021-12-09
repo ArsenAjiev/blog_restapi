@@ -1,0 +1,30 @@
+
+{% block sidebar %}
+     <h1> My text </h1>
+<div class="list-group">
+
+    <a href="{% url 'choise_category' 'Django_REST'%}" class="list-group-item list-group-item-action"> Django_REST</a>
+    <a href="{% url 'choise_category' 'PostgreSQL'%}" class="list-group-item list-group-item-action"> PostgreSQL </a>
+    <a href="{% url 'choise_category' 'Swagger'%}" class="list-group-item list-group-item-action"> Swagger </a>
+
+</div>
+  <br>
+    <h1> text </h1>
+ <div class="list-group">
+
+    <a href="#" class="list-group-item list-group-item-action"> Item </a>
+    <a href="#" class="list-group-item list-group-item-action"> Item2 </a>
+    <a href="#" class="list-group-item list-group-item-action"> Item3 </a>
+
+</div>
+
+  <br>
+    <h1> some text </h1>
+ <div class="list-group">
+
+    <a href="#" class="list-group-item list-group-item-action"> Item </a>
+    <a href="#" class="list-group-item list-group-item-action"> Item2 </a>
+    <a href="#" class="list-group-item list-group-item-action"> Item3 </a>
+
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+
+                <div class="card bg-light text-dark text-center">
+           <div class="card-body"> <h1>  Количество записей: {{ num_news }}</h1></div>
+        </div>
+ {% for item in news %}
+
+              <div class="row">
+                   <div class="col-sm-12">
+                             <div class="card">
+                              <div class="row">
+
+                                  <div class="col-md-4">
+                                      {% if item.photo %}
+                                          <img src=" /static/img{{ item.photo.url }}" alt="" height="150">
+
+                                      {% else %}
+                                          <img src="https://picsum.photos/id/1060/150/250?blur=2" alt="" class="mr-3">
+                                      {% endif %}
+                                  </div>
+
+                                  <div class="col-md-8">
+                                            <h4 class="card-title"><span class="title"> {{ item.title }}</span>  </h4>
+                                            <h4 class="card-title"><span class="title"> {{ item.author }}</span>  </h4>
+                                            <h4 class="card-title"><span class="title"> {{ item.created_at }}</span>  </h4>
+                                            <h4 class="card-title"><span class="title"> {{ item.updated_at }}</span>  </h4>
+                                            <h4 class="card-title"><span class="title"> {{ item.category }}</span>  </h4>
+                                            <h4 class="card-title"><span class="title"> {{ item.content|safe|linebreaks|truncatewords:"30"  }}</span>  </h4>
+
+                                                            <a href="{{ item.get_absolute_url }}">
+                                            <button class="btn btn-primary">Read more ...</button></a>
+
+                                  </div>
+                              </div>
+                        </div>
+                    </div>
+      </div>
+
+                     {% endfor %}
+
+
+  <div class="pagination">
+        <span class="step-links">
+          {% if news.has_previous %}
+            <a href="?page=1" class="btn btn-primary">&laquo; first</a>
+            <a href="?page={{ news.previous_page_number }}" class="btn btn-primary">previous</a>
+          {% endif %}
+            <span class="current">
+                Page {{ news.number }} of {{ news.paginator.num_pages }}.
+            </span>
+          {% if news.has_next %}
+            <a href="?page={{ news.next_page_number }} " class="btn btn-primary">next</a>
+            <a href="?page={{ news.paginator.num_pages }}" class="btn btn-primary">last &raquo;</a>
+          {% endif %}
+          </span>
+      </div>
+
+
+{% endblock %}
