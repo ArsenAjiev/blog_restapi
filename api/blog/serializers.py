@@ -18,4 +18,5 @@ from blog.models import News
 class NewsSerializer(ModelSerializer):
     class Meta:
         model = News
+        #fields = ['title']
         fields = '__all__'
